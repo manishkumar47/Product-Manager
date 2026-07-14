@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      :root {
+        --primary: #2d27a1;
+        --primary-hover: #4338ca;
+
+        --bg: #f8fafc;
+        --surface: #ffffff;
+
+        --text-primary: #304d8a;
+        --text-secondary: #4755697d;
+        --button-background: #3535e83a;
+        --button-text: #5d5eef;
+        --border: #e2e8f0;
+
+        --input-border: #ccd2d7;
+
+        --success: #16a34a;
+        --danger: #dc2626;
+
+        --navy: #0f172a;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-[var(--navy)] text-white h-16 px-8 flex items-center">
+      <h1 class="text-2xl font-semibold">Product Manager</h1>
+    </header>
+    <!-- Main -->
+    <main class="p-4 bg-[var(--bg)] h-[calc(100dvh-64px)] flex gap-4">
+      <!-- Sidebar -->
+      <aside
+        class="w-1/4 min-w-76 bg-white h-full border border-[var(--border)] rounded-lg shadow-lg flex flex-col items-center py-4 px-8"
+      >
+        <div class="w-full h-16 flex flex-col gap-2 items-center">
+          <!-- Buttons -->
+          <div class="flex w-full">
+            <button
+              data-active="true"
+              id="add-product-tab"
+              class="flex justify-center items-center h-12 w-1/2 text-[var(--text-secondary)] cursor-pointer rounded-lg text-center text-sm font-semibold data-[active=true]:text-white data-[active=true]:bg-[var(--primary)] data-[active=true]:shadow-lg"
+            >
+              Add Product
+            </button>
+
+            <button
+              data-active="false"
+              id="update-product-tab"
+              class="flex justify-center items-center h-12 w-1/2 text-[var(--text-secondary)] cursor-pointer rounded-lg text-center text-sm font-semibold data-[active=true]:text-white data-[active=true]:bg-[var(--primary)] data-[active=true]:shadow-lg"
+            >
+              Update Product
+            </button>
+          </div>
+          <hr class="text-[var(--text-secondary)] w-full" />
+        </div>
+        <!-- Forms -->
+        <div class="h-full w-full pt-8">
+          <form
+            class="flex flex-col gap-2 h-full w-full"
+            id="add-product-form "
+          >
+            <span
+              id="form-title"
+              class="uppercase text-[var(--text-primary)] text-xl font-semibold tracking-wide mb-4"
+              >add new product</span
+            >
+            <div class="flex-col gap-2 hidden" id="select-product-block">
+              <label
+                class="uppercase text-[var(--text-primary)] text-sm font-semibold tracking-wide"
+                for="select-product"
+                >Select product</label
+              >
+              <div class="relative w-full">
+                <select
+                  id="select-product"
+                  class="w-full text-[var(--text-secondary)] border border-[var(--input-border)] rounded-lg py-2 px-3 pr-10 appearance-none"
+                >
+                  <option value="">Select a product</option>
+                  <option value="iphone15">iPhone 15</option>
+                </select>
+
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center"
+                >
+                  <svg
+                    class="h-4 w-4 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <label
+              class="uppercase text-[var(--text-primary)] text-sm font-semibold tracking-wide"
+              for="title"
+              >title</label
+            >
+            <input
+              type="text"
+              name="title"
+              id="title"
+              required
+              placeholder="e.g. Iphone 15"
+              class="border-[var(--input-border)] border rounded-lg py-2 w-full px-2 placeholder:text-[var(--text-secondary)] placeholder:text-sm"
+            />
+
+            <label
+              class="uppercase text-[var(--text-primary)] text-sm font-semibold tracking-wide"
+              for="price"
+              >price</label
+            >
+            <input
+              type="number"
+              name="price"
+              id="price"
+              required
+              placeholder="e.g. 99.99"
+              class="border-[var(--input-border)] border rounded-lg py-2 w-full px-2 placeholder:text-[var(--text-secondary)] placeholder:text-sm"
+            />
+
+            <label
+              class="uppercase text-[var(--text-primary)] text-sm font-semibold tracking-wide"
+              for="stock"
+              >stock</label
+            >
+            <input
+              type="number"
+              name="stock"
+              id="stock"
+              required
+              placeholder="e.g. 10"
+              class="border-[var(--input-border)] border rounded-lg py-2 w-full px-2 placeholder:text-[var(--text-secondary)] placeholder:text-sm"
+            />
+
+            <label
+              class="uppercase text-[var(--text-primary)] text-sm font-semibold tracking-wide"
+              for="sku"
+              >sku</label
+            >
+            <input
+              type="text"
+              name="sku"
+              id="sku"
+              required
+              placeholder="e.g. AXL-37"
+              class="border-[var(--input-border)] border rounded-lg py-2 w-full px-2 placeholder:text-[var(--text-secondary)] placeholder:text-sm"
+            />
+
+            <button
+              type="submit"
+              id="form-submit-button-text"
+              class="flex justify-center items-center h-12 w-full mt-2 text-white cursor-pointer rounded-lg text-center text-sm font-semibold bg-[var(--primary)]"
+            >
+              Add Product
+            </button>
+          </form>
+        </div>
+      </aside>
+      <!-- Section -->
+      <section
+        class="w-3/4 bg-white h-full border border-[var(--border)] rounded-lg shadow-lg py-4 px-8"
+      >
+        <div class="w-full h-full flex flex-col">
+          <div class="w-full flex justify-between items-center ">
+            <div class="w-full h-16 flex flex-col">
+              <h1
+                class="m-0 text-[var(--text-primary)] text-2xl font-semibold tracking-wide"
+              >
+                Product List
+              </h1>
+              <p class="text-[var(--text-secondary)] text-sm">
+                Manage your inventory below
+              </p>
+            </div>
+            <div class="flex gap-2 w-max h-16 items-center">
+              <button class="border w-full">Clear Products</button>
+              <button class="w-full bg-[var(--button-background)] text-[var(--primary)] px-2 text-sm rounded-lg py-1">33 Items</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const addButton = document.getElementById("add-product-tab");
+      const updateButton = document.getElementById("update-product-tab");
+      const selectProductBlock = document.getElementById(
+        "select-product-block",
+      );
+      const formTitle = document.getElementById("form-title");
+      const formSubmitButtonText = document.getElementById(
+        "form-submit-button-text",
+      );
+      const priceInput = document.getElementById("price");
+      function updateUI() {
+        if (updateButton.dataset.active === "true") {
+          formTitle.innerText = "Update Product";
+          formSubmitButtonText.innerText = "Update Product";
+          selectProductBlock.classList.remove("hidden");
+          selectProductBlock.classList.add("flex");
+        } else {
+          formTitle.innerText = "Add New Product";
+          formSubmitButtonText.innerText = "Add Product";
+          selectProductBlock.classList.remove("flex");
+          selectProductBlock.classList.add("hidden");
+        }
+      }
+      addButton.addEventListener("click", () => {
+        addButton.dataset.active = true;
+        updateButton.dataset.active = false;
+        updateUI();
+      });
+      updateButton.addEventListener("click", () => {
+        updateButton.dataset.active = true;
+        addButton.dataset.active = false;
+        updateUI();
+      });
+      formSubmitButtonText.addEventListener("click", (e) => {
+        // e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
