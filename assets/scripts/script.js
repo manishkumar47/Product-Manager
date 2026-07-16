@@ -12,7 +12,8 @@ const skuLabel = document.getElementById("sku-label");
 const productTableBody = document.getElementById("product-table-body");
 const clearProductsButton = document.getElementById("clear-products");
 const itemCountBadge = document.getElementById("items-count-badge");
-
+const loader = document.getElementById("loader-row");
+let loading = false;
 let products = [];
 
 const ACTIONS = {
@@ -67,10 +68,12 @@ const fetchData = async () => {
 
   if (savedProducts?.length > 0) {
     products = savedProducts;
+    loading = false;
     renderProducts();
     return;
   }
-
+  loading = true;
+  renderProducts();
   const res = await fetch(
     "https://dummyjson.com/products?limit=10&skip=30&select=title,price,stock,sku",
   );
@@ -79,6 +82,7 @@ const fetchData = async () => {
   products = data.products;
 
   saveProducts();
+  loading = false;
   renderProducts();
 };
 
@@ -108,6 +112,22 @@ const updateUI = (product) => {
 };
 
 const renderProducts = () => {
+  if (loading) {
+    productTableBody.innerHTML = `
+      <tr>
+        <td colspan="6" class="py-8 text-center">
+          
+<div role="status" class="w-full flex items-center justify-center">
+   <div
+  class="w-8 h-8 border-4 border-gray-300 border-t-[var(--primary)] rounded-full animate-spin"
+></div>
+</div>
+
+        </td>
+      </tr>
+    `;
+    return;
+  }
   itemCountBadge.innerText = `${products.length} items`;
 
   productTableBody.innerHTML = products

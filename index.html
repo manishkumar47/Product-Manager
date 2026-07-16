@@ -201,7 +201,7 @@
               <span
                 id="items-count-badge"
                 class="w-18 bg-[var(--primary)] text-white px-2 text-xs rounded-lg py-1 flex justify-center items-center"
-                >33 Items</span
+                >0 Items</span
               >
             </div>
           </div>
@@ -223,7 +223,15 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody id="product-table-body"></tbody>
+
+            <tbody id="product-table-body">
+              <tr id="loader-row">
+                <!-- <td colspan="6" class="py-8 text-center">
+                  <div role="status" id="loader" class="hidden">
+                  </div>
+                </td> -->
+              </tr>
+            </tbody>
           </table>
         </div>
       </section>
